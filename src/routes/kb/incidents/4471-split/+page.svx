@@ -4,7 +4,7 @@ title: '#4471 reviewed: two date-order problems'
 owner: support desk
 status: closed
 reviewed: '2026-10-28'
-signature: 'Codex with Cheryl Laird · what it shows · 2026-10-28'
+signature: "v1.eyJzdWIiOiIxNjc0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMDg3NjksImV4cCI6MTc5MzI5NTE2OX0.-k3jKiF4BbXYT0dFU3DEeGoEal1Pcob57saZ0WIgM_E"
 ---
 
 <script>

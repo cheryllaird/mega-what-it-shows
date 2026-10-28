@@ -11,7 +11,8 @@ const raw = read('reports-4471.json');
 const tenants = new Map(fs.readdirSync(path.join(root, 'src/lib/data/tenants')).filter((p) => p.endsWith('.json')).map((p) => { const t = read(`tenants/${p}`); return [t.handle, t]; }));
 const tenantOf = (r) => tenants.get(r.tenant);
 const summary = summarise(raw, tenantOf);
-const signature = 'Codex with Cheryl Laird · what it shows · 2026-10-28';
+const page = fs.readFileSync(path.join(root, 'src/routes/kb/incidents/4471-split/+page.svx'), 'utf8');
+const signature = JSON.parse(page.match(/^signature:\s*(.+)$/m)[1]);
 const result = {
   snapshot: '2026-10-04', reviewed: '2026-10-28', signature, deskRef: deskRef(signature),
   rawRows: raw.length, uniqueReports: uniqueById(raw).length, ticketReports: summary.reports.length,
@@ -23,4 +24,4 @@ const result = {
 };
 fs.mkdirSync(path.join(root, 'evidence'), { recursive: true });
 fs.writeFileSync(path.join(root, 'evidence/4471-audit.json'), `${JSON.stringify(result, null, 2)}\n`);
-console.log(JSON.stringify({ ...result, groups: result.groups.map(({ reportIds, ...g }) => g) }, null, 2));
+console.log(JSON.stringify({ ...result, signature: '[stored in page frontmatter]', groups: result.groups.map(({ reportIds, ...g }) => g) }, null, 2));
