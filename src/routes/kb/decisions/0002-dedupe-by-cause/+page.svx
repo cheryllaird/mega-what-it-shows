@@ -1,0 +1,26 @@
+---
+layout: runbook
+title: '0002 · Propose duplicate checks by cause'
+owner: support desk
+status: proposed
+reviewed: '2026-10-28'
+signature: 'Codex with Cheryl Laird · what it shows · 2026-10-28'
+---
+
+<script>
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## Context
+
+The subject-only rule in [accepted decision 0001](/kb/decisions/0001-dedupe-by-subject) merges different faults and can separate differently worded reports of one fault. The [review of #4471](/kb/incidents/4471-split) shows why one merged ticket is not evidence of one fix.
+
+## Proposed decision
+
+Read the report and consult the tenant's locale and booking form. Use channel and supported cause evidence to identify duplicates. Subject matches can find candidates, but cannot decide a merge. Unknown tenants or unexplained observations stay separate pending investigation.
+
+## Consequences
+
+Triage takes more reading. Each engineering ticket has a supported scope and an independently computed count. The desk must approve this proposal before replacing its operational policy. Decision 0001 remains intact as history.
+
+<RenderStamp {signature} />

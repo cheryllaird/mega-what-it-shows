@@ -1,0 +1,44 @@
+---
+layout: runbook
+title: 'Triage: duplicate reports'
+owner: support desk
+status: needs-review
+reviewed: '2026-10-28'
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+A busy morning brings hundreds of reports about the same thing. We keep one ticket per issue
+and merge every duplicate into it, so engineering sees one thread with a count.
+
+<Callout kind="warn">
+The historical policy below conflicts with the executable cause checks and the
+[review of #4471](/kb/incidents/4471-split). It needs a support-desk decision.
+[Proposed decision 0002](/kb/decisions/0002-dedupe-by-cause) describes merging by supported cause;
+decision 0001 remains unchanged as the accepted historical record.
+</Callout>
+
+## Historical subject-only rule
+
+A report is a duplicate when its **subject line matches** the subject of an open ticket
+([decision 0001](/kb/decisions/0001-dedupe-by-subject)):
+
+1. lowercase the subject and strip punctuation;
+2. look for an open ticket with the same subject;
+3. found one: merge the report into it. None: open a new ticket.
+
+<Callout>
+Matching on subject is fast and needs no reading. During an incident that matters more than
+anything else.
+</Callout>
+
+## Try it
+
+<DedupeExplorer />
+
+## When you are unsure
+
+Merge. Splitting a ticket later is cheaper than two engineers chasing the same bug.

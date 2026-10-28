@@ -1,0 +1,35 @@
+---
+layout: runbook
+title: '#4471 · dates parse mm/dd in eu locales'
+owner: support desk
+status: superseded
+reviewed: '2026-10-28'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+Since April, people have told us their bookings land on the wrong day. Reports were merged
+into this ticket, but the views below distinguish causes using tenant locale, form and channel.
+
+<Callout>
+The earlier single-fix interpretation is superseded. Read the
+[signed review and separate fixes](/kb/incidents/4471-split). The computed views below show
+the supplied snapshot, not a live queue or proof of resolution.
+</Callout>
+
+## What was merged
+
+<CauseTable ticket={4471} />
+
+## Since April
+
+<QueueTimeline ticket={4471} />
+
+## Lessons
+
+- One ticket can contain different causes. Read reports and inspect tenant context before merging.
+- Deduplicate report IDs and distinguish received dates from merge dates.
