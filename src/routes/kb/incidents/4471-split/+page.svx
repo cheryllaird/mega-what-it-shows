@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 reviewed: two date-order problems'
 owner: support desk
-status: reviewed
+status: closed
 reviewed: '2026-10-28'
 signature: 'Codex with Cheryl Laird · what it shows · 2026-10-28'
 ---
@@ -20,18 +20,18 @@ The exported [incident page](/kb/incidents/4471) describes one known bug. Its ex
 
 <SplitSummary />
 
-## Separate fixes
+## Faults and verification
 
-- **Parser:** the shared parser reads every date month first. For tenants whose locale writes day first, ambiguous dates swap day and month. Parse according to the tenant's date order, or use a structured date value rather than an ambiguous string. Test both day-first and month-first tenants and the app, email and booking-v2 form paths.
-- **Hint:** booking-v3 prints `MM/DD/YYYY`, while its form interprets entries according to a day-first tenant's locale. People following the displayed hint supply a value the form misreads. Make the hint, input example, validation and parser agree. Test the affected booking-v3 tenants, alongside booking-v2 and month-first controls.
+- **Parser:** the shared parser read every date month first. For tenants whose locale writes day first, ambiguous dates swapped day and month. Engineering reports a fix. Verify both day-first and month-first tenants and the app, email and booking-v2 form paths.
+- **Hint:** booking-v3 printed `MM/DD/YYYY`, while its form interpreted entries according to a day-first tenant's locale. People following the displayed hint supplied a value the form misread. Engineering retired that form and will not fix it. Confirm that the retired path can no longer take bookings; any replacement must make its hint, example, validation and parser agree.
 
-Neither fix alone establishes that all reports are resolved. Intake's browser-derived tag is a guess; it does not replace the tenant directory. Unknown tenants stay unplaced for investigation.
+A fixed parser and a retired form are different outcomes. The timing observations still need checking before assuming that every symptom was addressed. Intake's browser-derived tag is a guess; it does not replace the tenant directory. Unknown tenants stay unplaced for investigation.
 
 ## The queue records two different events
 
 <QueueTimeline ticket={4471} />
 
-This snapshot was exported on 4 October 2026. It is not the live queue. Re-export before claiming current totals or resolution. These components deduplicate by report ID, filter ticket membership and recompute from the data supplied at the next build. Repeated subjects and overlapping export pages must not inflate the count.
+The reports were exported on 4 October 2026. They are not the live queue; the later engineering disposition is recorded separately above. Re-export before claiming current report totals. These components deduplicate by report ID, filter ticket membership and recompute from the data supplied at the next build. Repeated subjects and overlapping export pages must not inflate the count.
 
 ## Triage by evidence
 
@@ -43,6 +43,6 @@ Read the report, resolve its tenant, inspect the booking form and channel, and c
 
 ## Evidence and boundaries
 
-The report export, tenant directory, `causes.ts`, `locales.ts`, desk notes and executable views support this review. Report bodies are observations; tenant-based groups are the supplied desk classification. The timing anomalies need investigation, and no root cause or repair has been verified against production code.
+The report export, tenant directory, `causes.ts`, `locales.ts`, desk notes and executable views support this review. Report bodies are observations; tenant-based groups are the supplied desk classification. Engineering's later update supplies the closure outcomes. I have not independently verified its production fix or retirement; the timing anomalies remain documented for follow-up.
 
 <RenderStamp {signature} />

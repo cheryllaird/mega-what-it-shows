@@ -44,6 +44,9 @@ The source export is retained separately in the local challenge folder.
 
 The review follows the supplied tenant-based classifier. Timing anomalies remain visible
 and unresolved. Decision 0001 is unchanged; decision 0002 proposes a replacement policy.
+The course's later engineering update is captured in `src/lib/data/engineering-4471.json`:
+the parser was reported fixed and the hint issue was declined because booking-v3 was retired.
+The signed page distinguishes these closure outcomes from the older report snapshot.
 
 Install the locked dependencies with `npm ci --ignore-scripts`, then:
 

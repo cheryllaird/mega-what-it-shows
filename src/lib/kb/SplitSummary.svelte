@@ -2,6 +2,7 @@
   import reports from '#lib/data/reports-4471.json';
   import notes from '#lib/data/desk-notes.json';
   import links from '#lib/data/issue-links.json';
+  import engineering from '#lib/data/engineering-4471.json';
   import { tenantOf } from '#lib/kb/locales';
   import { summarise } from '#lib/kb/split-summary';
   import type { Report } from '#lib/kb/causes';
@@ -23,6 +24,17 @@
     </tbody>
   </table>
 </div>
+
+<h2>Engineering update</h2>
+<p>Engineering closed #{engineering.ticket} on {engineering.closed}, with different outcomes:</p>
+<ul>
+  {#each engineering.outcomes as result (result.cause)}
+    <li><strong>{result.cause}: {result.outcome}</strong> — {result.note}.
+      {#if issueLinks[result.cause]}<a href={issueLinks[result.cause]}>GitHub issue</a>{/if}
+    </li>
+  {/each}
+</ul>
+<p>Source: <a href={engineering.source}>the course's engineering update</a>, read on {engineering.observed}. The parser is reported fixed; the form-hint problem was closed because the form was retired. Closing a ticket does not imply that its original defect was repaired.</p>
 
 <h2>Received is not merged</h2>
 <p>Incoming reports span the months below. A bulk merge records when the desk filed them, not when the problem began. The July merge spike cannot date the incident's onset.</p>
